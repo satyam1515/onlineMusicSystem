@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumous · Explore Sound Realms</title>
+    <meta name="description" content="Dive into Lumous Explore: map emerging genres, trace creator spotlights, and curate luminous journeys." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="explore">
+    <div class="lumous-bg" aria-hidden="true">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="orb orb-c"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div id="app" class="layout">
+        <aside class="nav-panel" aria-label="Lumous navigation">
+            <div class="brand">
+                <div class="glyph">L</div>
+                <div class="brand-copy">
+                    <span class="brand-name">Lumous</span>
+                    <span class="brand-tagline">Feel luminous sound</span>
+                </div>
+            </div>
+
+            <nav class="nav nav-primary" aria-label="Primary">
+                <a class="nav-item" href="index.html">
+                    <span class="icon">🏠</span>
+                    <span>Discover</span>
+                </a>
+                <a class="nav-item active" href="explore.html" aria-current="page">
+                    <span class="icon">✨</span>
+                    <span>Explore</span>
+                </a>
+                <a class="nav-item" href="radio.html">
+                    <span class="icon">📻</span>
+                    <span>Radio</span>
+                </a>
+                <a class="nav-item" href="live.html">
+                    <span class="icon">🛰️</span>
+                    <span>Live Rooms</span>
+                </a>
+                <a class="nav-item" href="library.html">
+                    <span class="icon">🎧</span>
+                    <span>Library</span>
+                </a>
+                <a class="nav-item" href="profile.html">
+                    <span class="icon">👤</span>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="panel-divider"></div>
+
+            <section class="sidebar-section">
+                <header>
+                    <h2>Collections</h2>
+                    <button id="btn-new-collection" class="ghost-btn" aria-label="Create new collection">＋</button>
+                </header>
+                <div id="collection-list" class="sidebar-list scrollable" role="list"></div>
+            </section>
+
+            <section class="sidebar-section">
+                <header>
+                    <h2>Following</h2>
+                    <button id="btn-manage-following" class="ghost-btn" aria-label="Manage followed artists">⋯</button>
+                </header>
+                <div id="sidebar-artists" class="sidebar-list scrollable" role="list"></div>
+            </section>
+
+            <div class="panel-divider"></div>
+
+            <section class="sidebar-section profile-card">
+                <div class="profile-meta">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=lumous" alt="User avatar" class="avatar">
+                    <div>
+                        <span class="profile-name">Guest Listener</span>
+                        <span class="profile-plan">Free Plan · Upgrade</span>
+                    </div>
+                </div>
+                <button class="primary-btn upgrade-btn" id="btn-account">Sign in / Create account</button>
+            </section>
+        </aside>
+
+        <main class="main">
+            <header class="top-bar">
+                <div class="search">
+                    <label for="search-input" class="sr-only">Search music</label>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 14.8h-.9l-.3-.3a6.4 6.4 0 10-1.6 1.6l.3.3v.9l4.9 4.8 1.4-1.4-4.8-4.9zm-6.2 0a4.8 4.8 0 110-9.7 4.8 4.8 0 010 9.7z"/></svg>
+                    <input id="search-input" type="text" placeholder="Search tracks, creators, moods…" autocomplete="off" />
+                </div>
+                <div class="top-actions">
+                    <button class="pill-btn" id="btn-now-playing">
+                        <span class="dot live-dot"></span>
+                        Live Sessions
+                    </button>
+                    <button class="icon-pill" id="btn-notifications" title="Notifications">🔔</button>
+                    <button class="icon-pill" id="btn-settings" title="Preferences">⚙️</button>
+                </div>
+            </header>
+
+            <div class="main-columns">
+                <div class="primary-content">
+                    <section class="page-intro" aria-labelledby="explore-heading">
+                        <div>
+                            <span class="section-pill">Deep listening</span>
+                            <h1 id="explore-heading">Explore luminous realms crafted by the community.</h1>
+                            <p>Trace genre constellations, match moods to your current sprint, and bookmark creator laboratories that light up your evening code flow.</p>
+                        </div>
+                        <div class="page-intro-actions">
+                            <button class="primary-btn">Generate journey</button>
+                            <button class="secondary-btn">Map my tastes</button>
+                        </div>
+                    </section>
+
+                    <section class="hero-card" aria-labelledby="hero-title">
+                        <div class="hero-info">
+                            <span class="overline">Premiere Highlight</span>
+                            <h1 id="hero-title">—</h1>
+                            <p id="hero-description">Tune into the latest drop from visionary creators on Lumous.</p>
+                            <div class="hero-actions">
+                                <button class="primary-btn" id="hero-play">Play Highlight</button>
+                                <button class="secondary-btn" id="hero-bookmark">Save to Library</button>
+                            </div>
+                            <dl class="hero-meta">
+                                <div>
+                                    <dt>Artist</dt>
+                                    <dd id="hero-artist">—</dd>
+                                </div>
+                                <div>
+                                    <dt>Duration</dt>
+                                    <dd id="hero-duration">—</dd>
+                                </div>
+                                <div>
+                                    <dt>Genre</dt>
+                                    <dd id="hero-genre">—</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="hero-media">
+                            <img id="hero-cover" src="" alt="Highlighted release artwork" />
+                            <div class="waveform" aria-hidden="true">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section" aria-labelledby="atlas-heading">
+                        <header class="section-header">
+                            <div>
+                                <span class="section-pill">Trending fields</span>
+                                <h2 id="atlas-heading">Sound Atlases</h2>
+                            </div>
+                            <button class="text-btn">Pin selection</button>
+                        </header>
+                        <div class="feature-grid">
+                            <article class="feature-card" data-track-id="prism-halo">
+                                <span class="badge">Hyper Lo-fi</span>
+                                <h3>Liminal Pulse</h3>
+                                <p>Warm tape textures colliding with crystalline glitch percussion ripple across 92 BPM.</p>
+                                <span class="chip">+2.4k listeners</span>
+                            </article>
+                            <article class="feature-card" data-track-id="aurora-script">
+                                <span class="badge">Glitch pop</span>
+                                <h3>Chrome Bloom</h3>
+                                <p>Butterfly vocals drenched in vocoder bloom over airy polyrhythms for design flow.</p>
+                                <span class="chip">+1.8k tuned</span>
+                            </article>
+                            <article class="feature-card" data-track-id="midnight-mirror">
+                                <span class="badge">Nocturne bass</span>
+                                <h3>Neon Abyss</h3>
+                                <p>Sub-bass gardens + modular bloops curated by Nova North for midnight makers.</p>
+                                <span class="chip">+3.1k in queue</span>
+                            </article>
+                            <article class="feature-card" data-track-id="solar-lattice">
+                                <span class="badge">Ambient garage</span>
+                                <h3>Aurora Drift</h3>
+                                <p>Soft breakbeats dissolve into widescreen pads to carry late-night code rituals.</p>
+                                <span class="chip">+987 saves</span>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="content-section" aria-labelledby="spotlight-heading">
+                        <header class="section-header">
+                            <div>
+                                <span class="section-pill">Creator labs</span>
+                                <h2 id="spotlight-heading">Spotlights</h2>
+                            </div>
+                            <button class="text-btn">Follow all</button>
+                        </header>
+                        <div class="spotlight-grid">
+                            <article class="spotlight-card" data-track-id="prism-halo">
+                                <img src="https://images.unsplash.com/photo-1462332420958-a05d1e002413?q=80&w=1200&auto=format&fit=crop" alt="Producer in studio">
+                                <div class="spotlight-body">
+                                    <span class="badge">Modular bloom</span>
+                                    <strong>Astra Aeon</strong>
+                                    <p>Designing chromatic pads for the next Lumous+ generative pack.</p>
+                                </div>
+                                <footer>Live debrief · 22:00 UTC</footer>
+                            </article>
+                            <article class="spotlight-card" data-track-id="violet-sea">
+                                <img src="https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=1200&auto=format&fit=crop" alt="DJ mixing live">
+                                <div class="spotlight-body">
+                                    <span class="badge">Analog drift</span>
+                                    <strong>Serein</strong>
+                                    <p>Recording one-take vocal motifs inspired by neon-soaked train rides.</p>
+                                </div>
+                                <footer>Masterclass · Tomorrow</footer>
+                            </article>
+                            <article class="spotlight-card" data-track-id="superluminal">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop" alt="Live coding session">
+                                <div class="spotlight-body">
+                                    <span class="badge">Live coding</span>
+                                    <strong>Nodewave Collective</strong>
+                                    <p>Building reactive visuals that sync to Web Audio nodes in real time.</p>
+                                </div>
+                                <footer>Visual drop · Weekend</footer>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="content-section" aria-labelledby="signals-heading">
+                        <header class="section-header">
+                            <div>
+                                <span class="section-pill">City signals</span>
+                                <h2 id="signals-heading">Global Scenes</h2>
+                            </div>
+                            <button class="text-btn">Track itinerary</button>
+                        </header>
+                        <ul class="signal-list" role="list">
+                            <li><strong>Helsinki</strong><span>Polar bloom · 128bpm</span></li>
+                            <li><strong>São Paulo</strong><span>Organic baile · 96bpm</span></li>
+                            <li><strong>Seoul</strong><span>Glass future funk · 110bpm</span></li>
+                            <li><strong>Reykjavík</strong><span>Arctic choral club · 132bpm</span></li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section" aria-labelledby="mood-heading">
+                        <header class="section-header">
+                            <div>
+                                <span class="section-pill">Curated daily</span>
+                                <h2 id="mood-heading">Lumous Mood Journeys</h2>
+                            </div>
+                            <button class="text-btn" data-action="view-all-moods">View all</button>
+                        </header>
+                        <div id="mood-grid" class="card-grid mood-grid"></div>
+                    </section>
+
+                    <section class="content-section" aria-labelledby="mix-heading">
+                        <header class="section-header">
+                            <div>
+                                <span class="section-pill">AI-powered mixes</span>
+                                <h2 id="mix-heading">Neon Mixtapes</h2>
+                            </div>
+                            <button class="text-btn" data-action="generate-mix">Generate mix</button>
+                        </header>
+                        <div id="mix-grid" class="card-grid mix-grid"></div>
+                    </section>
+
+                    <section class="content-section" aria-labelledby="release-heading">
+                        <header class="section-header">
+                            <div>
+                                <span class="section-pill">Fresh today</span>
+                                <h2 id="release-heading">New Releases</h2>
+                            </div>
+                            <div class="section-actions">
+                                <button class="icon-pill" data-action="filter-release" title="Filter releases">🎚️</button>
+                                <button class="text-btn" data-action="view-calendar">Release calendar</button>
+                            </div>
+                        </header>
+                        <div id="release-list" class="release-list"></div>
+                    </section>
+
+                    <section class="content-section" aria-labelledby="live-heading">
+                        <header class="section-header">
+                            <div>
+                                <span class="section-pill live">Live now</span>
+                                <h2 id="live-heading">Broadcast Channels</h2>
+                            </div>
+                            <button class="text-btn" data-action="view-schedule">Schedule</button>
+                        </header>
+                        <div id="live-channel-list" class="live-grid"></div>
+                    </section>
+                </div>
+
+                <aside class="secondary-panel" aria-label="Now playing and queue">
+                    <section class="panel-card now-playing-card">
+                        <header>
+                            <span>Now Playing</span>
+                            <button class="icon-pill" id="btn-share" title="Share track">🔗</button>
+                        </header>
+                        <div class="np-body">
+                            <img id="np-cover" src="" alt="Current track cover" class="np-cover" />
+                            <div class="np-meta">
+                                <h3 id="np-title">—</h3>
+                                <p id="np-artist">—</p>
+                                <div class="waveform-mini" aria-hidden="true">
+                                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="np-actions">
+                            <button class="icon-pill" id="btn-like" title="Like this track">❤️</button>
+                            <button class="icon-pill" id="btn-add-queue" title="Add to queue">➕</button>
+                            <button class="icon-pill" id="btn-open-lyrics" title="Show lyrics">📝</button>
+                        </div>
+                    </section>
+
+                    <section class="panel-card queue-card" aria-labelledby="queue-heading">
+                        <header>
+                            <span id="queue-heading">Up Next</span>
+                            <button class="text-btn" id="btn-clear-queue">Clear</button>
+                        </header>
+                        <div id="queue-list" class="queue-list scrollable" role="list"></div>
+                    </section>
+
+                    <section class="panel-card activity-card" aria-labelledby="activity-heading">
+                        <header>
+                            <span id="activity-heading">Community Pulse</span>
+                            <button class="text-btn" data-action="view-explore">Explore</button>
+                        </header>
+                        <ul id="activity-feed" class="activity-feed"></ul>
+                    </section>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="player" aria-label="Player controls">
+            <div class="player-track">
+                <img src="" alt="Track cover" class="player-cover" id="player-cover">
+                <div class="player-meta">
+                    <span class="player-title" id="player-title">—</span>
+                    <span class="player-artist" id="player-artist">—</span>
+                </div>
+            </div>
+
+            <div class="player-controls">
+                <div class="control-row">
+                    <button class="player-btn" id="btn-shuffle" title="Toggle shuffle" aria-pressed="false">🔀</button>
+                    <button class="player-btn" id="btn-prev" title="Previous track">⏮️</button>
+                    <button class="player-btn primary" id="btn-play" title="Play or pause" aria-pressed="false">▶️</button>
+                    <button class="player-btn" id="btn-next" title="Next track">⏭️</button>
+                    <button class="player-btn" id="btn-repeat" title="Toggle repeat" aria-pressed="false">🔁</button>
+                </div>
+                <div class="progress-row">
+                    <span id="time-current" class="time">0:00</span>
+                    <input id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek timeline" />
+                    <span id="time-total" class="time">0:00</span>
+                </div>
+            </div>
+
+            <div class="player-extras">
+                <div class="volume">
+                    <span>🔊</span>
+                    <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Adjust volume" />
+                </div>
+                <button class="player-btn" id="btn-device" title="Connect to a device">🖥️</button>
+                <button class="player-btn" id="btn-lyrics" title="Open lyrics">📜</button>
+            </div>
+
+            <audio id="audio" preload="metadata"></audio>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="api.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
+
